@@ -1,0 +1,13 @@
+class Solution(object):
+    def isPalindrome(self, x):
+      if x<0 or (x!=0 and x%10==0):
+       return False
+      else:
+       str_x=str(x)
+       str_Pl=str_x[::-1]
+       return True if str_Pl==str_x else False
+       
+
+sol= Solution()
+x=123
+print(sol.isPalindrome(x))
