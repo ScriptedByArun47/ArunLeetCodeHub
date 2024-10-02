@@ -1,0 +1,17 @@
+class Solution(object):
+    def reverse(self, x):
+        if x==0:
+            return 0
+        srt_x=str(abs(x))
+        srt_rev= srt_x[::-1]
+        srt_rev=int(srt_rev)
+        if x<0:
+          srt_rev=-srt_rev
+        if srt_rev<-(2**31) or srt_rev>(2**31-1):
+            return 0
+        return srt_rev 
+
+sol=Solution()
+print(sol.reverse(123))
+print(sol.reverse(-123))
+print(sol.reverse(120))    
