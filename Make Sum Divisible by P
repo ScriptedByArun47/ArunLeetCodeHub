@@ -1,0 +1,33 @@
+class Solution(object):
+    def minSubarray(self, nums, p):
+        totsum = sum(nums)
+        remain = totsum % p
+        if remain == 0:
+            return 0
+        
+        prefix_modmap = {0: -1}
+        prefix_sum = 0
+        min_len = len(nums)
+        
+        for i, num in enumerate(nums):
+            prefix_sum += num
+            current_mod = prefix_sum % p
+            needed_mod = (current_mod - remain) % p
+            
+            if needed_mod in prefix_modmap:
+                min_len = min(min_len, i - prefix_modmap[needed_mod])
+            
+            prefix_modmap[current_mod] = i
+        
+        return min_len if min_len < len(nums) else -1
+
+p1 = Solution()
+nums = [3, 1, 4, 2]
+p = 6
+print(p1.minSubarray(nums, p))  # Output: 1
+nums = [6, 3, 5, 2]
+p = 9
+print(p1.minSubarray(nums, p))  # Output: 2
+nums = [1, 2, 3]
+p = 3
+print(p1.minSubarray(nums, p))  # Output: 0
