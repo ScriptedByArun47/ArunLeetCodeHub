@@ -1,0 +1,10 @@
+class Solution(object):
+    def arrayRankTransform(self, arr):
+       
+        sorted_arr=sorted(set(arr))
+        rank_dis={val:idx+1 for idx,val in enumerate(sorted_arr)}
+        return [rank_dis[num]for num in arr]
+
+arr=[40,10,20,30]
+p1=Solution()
+p1.arrayRankTransform(arr)
