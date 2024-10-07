@@ -1,0 +1,10 @@
+class Solution(object):
+    def minLength(self, s):
+        stack=[]
+        for char in s:
+            stack.pop() if stack and ((stack[-1]=='A'and char=='B')or(stack[-1]=='C'and char =='D')) else stack.append(char)
+        return len(stack)
+p1=Solution()
+s="ABFCACDB"
+print(p1.minLength(s))
+        
