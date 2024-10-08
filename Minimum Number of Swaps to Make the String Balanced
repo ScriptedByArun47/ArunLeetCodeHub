@@ -1,0 +1,23 @@
+class Solution:
+    def minSwaps(self, s) :
+        balance = 0
+        max_imbalance = 0
+        
+        for char in s:
+            if char == '[':
+                balance += 1
+            else:  # char == ']'
+                balance -= 1
+            
+            # Track the maximum imbalance
+            if balance < max_imbalance:
+                max_imbalance = balance
+        
+        # The number of swaps needed is the absolute value of max_imbalance divided by 2
+        return (abs(max_imbalance) + 1) // 2
+
+# Testing the examples
+p1 = Solution()
+print(p1.minSwaps("][][]"))   # Output: 1
+print(p1.minSwaps("]]][[["))   # Output: 2
+print(p1.minSwaps("[]"))       # Output: 0
