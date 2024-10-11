@@ -1,0 +1,30 @@
+import heapq
+
+class Solution(object):
+    def smallestChair(self, times, targetFriend):
+        # Sort the times by arrival time
+        times = sorted((a, l, i) for i, (a, l) in enumerate(times))
+        
+        available = list(range(len(times)))  # Chairs available
+        heapq.heapify(available)  # Turn the list into a heap
+        occupied = []  # List to keep track of occupied chairs
+        
+        for arrival, leaving, guest in times:
+            # Free up chairs that are no longer occupied
+            while occupied and occupied[0][0] <= arrival:
+                _, chair = heapq.heappop(occupied)
+                heapq.heappush(available, chair)
+
+            # Assign the smallest available chair
+            chair = heapq.heappop(available)
+            if guest == targetFriend:
+                return chair
+            
+            # Mark this chair as occupied
+            heapq.heappush(occupied, (leaving, chair))
+
+# Example usage
+p1 = Solution()
+times = [[1, 4], [2, 3], [4, 6]]
+targetFriend = 1
+print(p1.smallestChair(times, targetFriend))  # Output: 1
