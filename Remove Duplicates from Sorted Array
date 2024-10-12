@@ -1,0 +1,15 @@
+class Solution(object):
+    def removeDuplicates(self, nums):
+   
+        if not nums:
+             return 0
+        uni_num = 0
+        for num in range(1,len(nums)):
+            if nums[num]!=nums[uni_num]:
+                 uni_num+=1
+                 nums[uni_num]=nums[num]
+        return uni_num+1
+p1=Solution()
+nums=[1,1,2]
+length=p1.removeDuplicates(nums)
+print(nums[:length])
