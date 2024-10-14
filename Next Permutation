@@ -1,0 +1,24 @@
+class Solution(object):
+    def nextPermutation(self, nums):
+        n = len(nums)
+        i = n - 2
+        # Find the first decreasing element
+        while i >= 0 and nums[i] >= nums[i + 1]:
+            i -= 1
+        
+        if i >= 0:  # If the whole array is not in descending order
+            j = n - 1
+            # Find the element just larger than nums[i]
+            while nums[j] <= nums[i]:
+                j -= 1
+            # Swap elements at i and j
+            nums[i], nums[j] = nums[j], nums[i]
+        
+        # Reverse the subarray from i + 1 to end
+        nums[i + 1:] = reversed(nums[i + 1:])
+        return nums
+
+p1 = Solution()
+nums = [1, 2, 3]
+arr = p1.nextPermutation(nums)
+print(arr)
