@@ -1,0 +1,12 @@
+class Solution(object):
+    def climbStairs(self, n):
+        top =n
+        if top == 0 or top == 1:
+            return 1
+        else:
+            a,b=1,1
+            for _ in range(2,top+1):
+                a,b=b,b+a
+            return b
+s=Solution()
+s.climbStairs(4)
