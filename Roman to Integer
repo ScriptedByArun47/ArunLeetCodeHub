@@ -1,0 +1,22 @@
+class Solution(object):
+    def romanToInt(self, s):
+        romanvalu={'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        s=s[::-1]
+        total=0
+        prevalue=0
+        for i in s:
+            if i not in romanvalu:
+                return 0
+        
+            if i in romanvalu:
+                count= romanvalu[i]
+                if count<prevalue:
+                    total-=count
+                else:
+                    total+=count
+                    prevalue=count
+        return total
+
+                
+s1=Solution()
+s1.romanToInt("III")
