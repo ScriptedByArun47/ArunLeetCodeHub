@@ -1,0 +1,16 @@
+#javascript
+
+var strStr = function(haystack, needle) {
+    return haystack.indexOf(needle)
+
+};
+
+#python
+class Solution(object):
+    def strStr(self, haystack, needle):
+        va=haystack.find(needle)
+        return va
+s1=Solution()
+haystack = "sadbutsad"
+needle = "sad"
+print(s1.strStr(haystack,needle))
