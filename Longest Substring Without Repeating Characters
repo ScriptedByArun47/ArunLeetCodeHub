@@ -1,0 +1,40 @@
+
+#javascript
+var lengthOfLongestSubstring = function(s) {
+    let  str=0
+let lent=0
+let dict={}
+for (let i=0;i<s.length;i++){
+    if(s[i] in dict && dict[s[i]]>=str)
+    {
+        str=dict[s[i]]+1
+
+    }
+    dict[s[i]]=i
+    lent=Math.max(lent,i-str+1)
+
+}
+return lent
+};
+
+
+#python
+
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        srt=0
+        lenth=0
+        lent_str=len(s)
+        dict={}
+        for end in range(lent_str):
+            if s[end] in dict and dict[s[end]] >=srt:
+                srt= dict[s[end]]+1
+            
+            dict[s[end]]=end
+
+            lenth=max(lenth,end-srt+1)
+        return lenth
+
+s1 = Solution()
+s = "abcabcbb"
+s1.lengthOfLongestSubstring(s)    
