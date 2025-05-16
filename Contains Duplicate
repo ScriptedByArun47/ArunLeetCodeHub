@@ -1,0 +1,13 @@
+class Solution(object):
+    def containsDuplicate(self, arr):
+        arr.sort()
+        window={}
+        for i, num in enumerate(arr):
+            if num in window:
+                return True
+            window[num] = i
+    
+        return False
+s1 =Solution()
+nums=[1,2,3,1]
+print(s1.containsDuplicate(nums)) 
