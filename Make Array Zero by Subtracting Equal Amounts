@@ -1,0 +1,16 @@
+class Solution(object):
+    def minimumOperations(self, arr):
+        minimum=min(arr)
+        operation=0
+        while sum(arr)>0:
+            minimum=min(x for x in arr if x>0)
+            for i in range(len(arr)):
+                if arr[i]>0:
+                    arr[i]=arr[i]-minimum
+            
+            operation+=1
+        return operation
+
+s1= Solution()
+arr=[1,2,3,4,5]
+print(s1.minimumOperations(arr))
