@@ -1,0 +1,43 @@
+class Solution(object):
+    def minSwaps(self, nums):
+        def digit_sum(n):
+            return sum(int(d) for d in str(n))
+        
+        n = len(nums)
+        # Pair each number with its original index
+        arr = [(num, i) for i, num in enumerate(nums)]
+        
+        # Sort by digit sum, then by number value (to break ties)
+        arr.sort(key=lambda x: (digit_sum(x[0]), x[0]))
+        
+        # pos_map[i] = the index in sorted array where nums[i] should go
+        pos_map = [0] * n
+        for sorted_pos, (num, original_pos) in enumerate(arr):
+            pos_map[original_pos] = sorted_pos
+        
+        visited = [False] * n
+        swaps = 0
+        
+        # Find cycles in the permutation pos_map
+        for i in range(n):
+            if visited[i] or pos_map[i] == i:
+                continue
+            
+            cycle_size = 0
+            j = i
+            
+            while not visited[j]:
+                visited[j] = True
+                j = pos_map[j]
+                cycle_size += 1
+            
+            if cycle_size > 0:
+                swaps += (cycle_size - 1)
+        
+        return swaps
+s = Solution()
+nums = [37, 100]
+print(s.minSwaps(nums))  # Output: 1
+
+nums2 = [18, 43, 34, 16]
+print(s.minSwaps(nums2))  # Output: 2
