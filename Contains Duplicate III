@@ -1,0 +1,25 @@
+import bisect
+
+class Solution(object):
+    def containsNearbyAlmostDuplicate(self, nums, indexDiff, valueDiff):
+        if valueDiff < 0 or indexDiff <= 0:
+            return False
+        
+        window = []  # this will always be sorted
+
+        for i in range(len(nums)):
+            # Find the insertion position for nums[i] - valueDiff
+            pos = bisect.bisect_left(window, nums[i] - valueDiff)
+
+            
+            if pos < len(window) and abs(window[pos] - nums[i]) <= valueDiff:
+                return True
+
+            bisect.insort(window, nums[i])
+
+            if i >= indexDiff:
+                # Remove nums[i - indexDiff] from window
+                remove_pos = bisect.bisect_left(window, nums[i - indexDiff])
+                del window[remove_pos]
+
+        return False
