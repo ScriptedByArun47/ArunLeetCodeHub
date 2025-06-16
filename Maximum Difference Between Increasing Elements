@@ -1,0 +1,14 @@
+class Solution(object):
+    def maximumDifference(self, nums):
+        min_val=nums[0]
+        min_diff=-1
+        for num in nums[1:]:
+            if num>min_val:
+                min_diff=max(min_diff,num-min_val)
+            else:
+                min_val=num
+        return min_diff
+s1=Solution()
+nums=[7,1,5,4]
+print(s1.maximumDifference(nums))
+        
