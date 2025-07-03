@@ -1,0 +1,24 @@
+import java.util.*;
+
+class Solution {
+    public List<Integer> findWordsContaining(String[] words, char x) {
+        List<Integer> result_index = new ArrayList<>();
+
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].contains(String.valueOf(x))) {
+                result_index.add(i);
+            }
+        }
+
+        return result_index;
+    }
+
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        String[] words = {"apple", "banana", "cherry", "date"};
+        char x = 'a';
+
+        List<Integer> result = sol.findWordsContaining(words, x);
+        System.out.println(result);  
+    }
+}
