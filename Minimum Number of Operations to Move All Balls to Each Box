@@ -1,0 +1,36 @@
+class Solution {
+    public int[] minOperations(String boxes) {
+        int n = boxes.length();
+        int[] arrbox = new int[n];
+
+        
+        for (int i = 0; i < n; i++) {
+            arrbox[i] = boxes.charAt(i) - '0';
+        }
+
+        int[] left = new int[n];
+        int[] right = new int[n];
+
+        int onecrf = arrbox[0];
+
+        for (int i = 1; i < n; i++) {
+            left[i] = left[i - 1] + onecrf;
+            onecrf += arrbox[i]; 
+        }
+
+        onecrf = arrbox[n - 1];
+
+        
+        for (int i = n - 2; i >= 0; i--) {
+            right[i] = right[i + 1] + onecrf;  
+            onecrf += arrbox[i];  
+        }
+
+       
+        for (int i = 0; i < n; i++) {
+            arrbox[i] = left[i] + right[i];
+        }
+
+        return arrbox;
+    }
+}
