@@ -1,0 +1,13 @@
+class Solution {
+    public int subsetXORSum(int[] nums) {
+        return backtrack(nums,0,0);
+        
+    }
+    private int backtrack(int[] nums,int index, int currentvalueXor)
+    {
+        if(index == nums.length) return currentvalueXor;
+        
+
+        return backtrack(nums,index+1,currentvalueXor ^ nums[index]) + backtrack(nums,index+1,currentvalueXor);
+    }
+}
