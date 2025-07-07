@@ -1,0 +1,12 @@
+#python
+class Solution(object):
+    def defangIPaddr(self, address):
+        return address.replace(".","[.]")
+
+#java
+class Solution {
+    public String defangIPaddr(String address) {
+        return address.replace(".","[.]");
+        
+    }
+}
