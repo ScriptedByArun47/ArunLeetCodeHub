@@ -1,0 +1,41 @@
+#python3
+from typing import List
+class Solution:
+    def pivotArray(self, nums: List[int], pivot: int) -> List[int]:
+       return (
+            [num for num in nums if num < pivot] +
+            [num for num in nums if num == pivot] +
+            [num for num in nums if num > pivot]
+        )
+
+
+#java
+import java.util.*;
+import java.util.stream.*;
+
+class Solution {
+    public int[] pivotArray(int[] nums, int pivot) {
+        List<Integer> less = Arrays.stream(nums)
+            .filter(num -> num < pivot)
+            .boxed()
+            .collect(Collectors.toList());
+
+        List<Integer> equal = Arrays.stream(nums)
+            .filter(num -> num == pivot)
+            .boxed()
+            .collect(Collectors.toList());
+
+        List<Integer> greater = Arrays.stream(nums)
+            .filter(num -> num > pivot)
+            .boxed()
+            .collect(Collectors.toList());
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(less);
+        result.addAll(equal);
+        result.addAll(greater);
+
+        
+        return result.stream().mapToInt(i -> i).toArray();
+    }
+}
