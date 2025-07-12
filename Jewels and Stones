@@ -1,0 +1,25 @@
+#java
+
+class Solution {
+    public int numJewelsInStones(String jewels, String stones) {
+        HashSet<Character> jewel_set = new HashSet<>();
+        for(char c:jewels.toCharArray()){
+            jewel_set.add(c);
+        }
+        int count=0;
+        for(char c:stones.toCharArray()){
+            if(jewel_set.contains(c)){
+                count++;
+            }
+        }
+        return count;
+        
+    }
+}
+
+#python
+
+class Solution(object):
+    def numJewelsInStones(self, jewels, stones):
+       jew_set=set(jewels)
+       return sum(stone in jew_set for stone in stones)
