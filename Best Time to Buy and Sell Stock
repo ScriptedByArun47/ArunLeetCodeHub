@@ -1,0 +1,30 @@
+#java 
+
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int minPrice = Integer.MAX_VALUE, maxProfit = 0;
+        for (int price : prices) {
+            minPrice = Math.min(minPrice, price);
+            maxProfit = Math.max(maxProfit, price - minPrice);
+        }
+        return maxProfit;
+    }
+}
+
+
+#python
+
+
+class Solution(object):
+    def maxProfit(self, prices):
+       min_price=float('inf')
+       max_profit=0
+       for price in prices:
+            if price < min_price :
+                min_price=price
+            elif price - min_price >= max_profit:
+                max_profit = price - min_price
+       return max_profit
+
+    
