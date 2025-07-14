@@ -1,0 +1,36 @@
+#java
+
+class Solution {
+    public int maxProduct(int[] nums) {
+        int max_prod=nums[0];
+        int min_prod=max_prod;
+        int result=min_prod;
+        for(int i=1;i<nums.length;i++){
+            int temp_max = max_prod;
+            int temp_min = min_prod;
+            max_prod = Math.max(nums[i], Math.max(temp_max * nums[i], temp_min * nums[i]));
+            min_prod = Math.min(nums[i], Math.min(temp_max * nums[i], temp_min * nums[i]));
+
+            result = Math.max(result, max_prod);
+
+        }
+        return result;
+    }
+}
+
+
+#python
+
+class Solution(object):
+    def maxProduct(self, nums):
+        maxprod=nums[0]
+        minprod=nums[0]
+        result=nums[0]
+        for i in range(1,len(nums)):
+            tempmax=maxprod
+            tempmin=minprod
+            maxprod=max(nums[i],max(tempmax*nums[i],tempmin*nums[i]))
+            minprod=min(nums[i],min(tempmax*nums[i],tempmin*nums[i]))
+            result =max(result,maxprod)
+        return result
+        
