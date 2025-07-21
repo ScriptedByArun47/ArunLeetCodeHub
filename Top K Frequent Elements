@@ -1,0 +1,30 @@
+#java
+
+from collections import defaultdict
+
+class Solution(object):
+    def topKFrequent(self, nums, k):
+       fremap=defaultdict(int)
+       for i in nums:
+            fremap[i]+=1
+       bucket=[[] for _ in range(len(nums)+1)]
+       for num,fre in fremap.items():
+            bucket[fre].append(num)
+       result=[]
+       for i in range(len(bucket) - 1, 0, -1):
+            for num in bucket[i]:
+                result.append(num)
+                if len(result) == k:
+                    return result
+
+
+#python
+
+from collections import Counter
+import heapq
+class Solution(object):
+    def topKFrequent(self, nums, k):
+       freq=Counter(nums)
+       top_k=heapq.nlargest(k,freq.items(),key=lambda x:x[1])
+       return [item for item,freq in top_k]
+        
